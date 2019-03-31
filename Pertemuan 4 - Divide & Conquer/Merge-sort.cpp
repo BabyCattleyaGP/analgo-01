@@ -3,6 +3,10 @@
 */
 
 #include<iostream>
+#include <chrono>
+#include <ctime>
+#include <cstdlib>
+
 using namespace std;
 
     void Merge(int A[],int p, int q,int r) {     /* merges two arrays */
@@ -63,23 +67,34 @@ using namespace std;
 
     int main()
     {
-    
-    	int A_Size;                          /*A_Size size of A[]*/    
-    
-    	cout<<"Masukkan banyak elemen :";
-    
+        int A_Size; 
+        int A[A_Size];
+        
+        cout<<"Masukkan banyak elemen :";
     	cin>>A_Size;
     
-    	int A[A_Size];
-    	
-    	cout<<"Masukkan elemen :";
+        cout << "Data array sebelum sort :";
     
-    	for(int i=0;i<A_Size;i++)
-    	{
-    		cin>>A[i];
-    	}
+        unsigned seed = time(0);
+        srand(seed);
     
+        // Buat Random Array
+        for(int i = 0; i<A_Size; i++)
+        {
+            A[i]=rand()%10+1;
+        }
+        
+        for(int i = 0; i<A_Size; i++)
+        {
+            cout<<A[i]<<" ";
+        }
+        
+        auto start = chrono::steady_clock::now();
+        
     	MergeSort(A,0,A_Size-1);
+    	
+    	auto end = chrono::steady_clock::now();
+        auto diff = end - start;
     	
     	cout<<endl<<"Hasil Setelah Sort :";
     
@@ -89,4 +104,7 @@ using namespace std;
     	}
     
     	cout<<endl;
+    	
+    	cout << endl <<"Runtime : " << chrono::duration <double, milli> (diff).count() << " ms" << endl;
+
     }
