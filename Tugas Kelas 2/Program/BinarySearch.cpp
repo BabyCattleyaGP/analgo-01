@@ -29,8 +29,6 @@ main () {
 	cout<<endl<<"Masukkan angka yang akan dicari :";
 	cin>>search;
 	
-	auto start = chrono::steady_clock::now();
-	
 	int posisi;
 	for (int i=0; i<n-1; i++) {
 		posisi=i;
@@ -47,6 +45,8 @@ main () {
     {
      	cout << arr[i]<<" ";
     }
+	
+	auto start = chrono::steady_clock::now();
 	
 	first = 0;
 	last = n-1;
